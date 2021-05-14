@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block title %}Vote{% endblock %}
+
+{% block main %}
+<div class="row">
+    <div class="col-lg-8 col-lg-offset-2">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Cast Your Vote</h3>
+            </div>
+
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h2>{{ ques.question }}</h2>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <hr />
+
+                        <form method="POST">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="poll" value="option1" required>
+                                        {{ ques.option_one }}
+                                    </label> &nbsp;
+                                    <label>
+                                        <input type="radio" name="poll" value="option2">
+                                        {{ ques.option_two }}
+                                    </label> &nbsp;
+                                    <label>
+                                        <input type="radio" name="poll" value="option3">
+                                        {{ ques.option_three }}
+                                    </label> &nbsp;
+                                </div>
+                            </div>
+
+                            <input type="hidden" name="id" value="1">
+
+                            <hr />
+
+                            <button type="submit" class="btn btn-info">
+                                Submit
+                            </button>
+                            <a href="{% url 'index' %}" class="btn btn-info">
+                                Go Back
+                            </a>
+                            <a href="{% url 'results' ques.id %}" class="btn btn-info">
+                                Results
+                            </a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

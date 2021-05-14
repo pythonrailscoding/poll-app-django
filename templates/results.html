@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}Results{% endblock %}
+
+{% block main %}
+<div class="row">
+    <div class="col-lg-8 col-lg-offset-2">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Poll Result</h3>
+            </div>
+
+            <div class="panel-body">
+                <h3>{{ ques.question }}?</h3>
+            </div>
+
+            <ul class="list-group">
+                <li class="list-group-item">{{ ques.option_one }} &mdash; <strong>{{ ques.option_one_count }}</strong></li>
+                <li class="list-group-item">{{ ques.option_two }} &mdash; <strong>{{ ques.option_two_count }}</strong></li>
+                <li class="list-group-item">{{ ques.option_three }} &mdash; <strong>{{ ques.option_three_count }}</strong></li>
+            </ul>
+
+            <div class="panel-footer">
+                Total &mdash; <strong>{{ ques.total }}</strong>
+            </div>
+
+        </div>
+        <a href="{% url 'index' %}" class="btn btn-info">
+            Go Back
+        </a>
+        <a href="{% url 'vote' ques.id %}" class="btn btn-info">
+            Vote
+        </a>
+    </div>
+</div>
+{% endblock %}

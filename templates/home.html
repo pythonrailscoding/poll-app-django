@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}Homepage{% endblock %}
+
+{% block main %}
+<div class="row">
+    <div class="col-lg-8 col-lg-offset-2">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Available Polls</h3>
+            </div>
+                
+            <ul class="list-group">
+                {% for ques in polls %}
+                <li class="list-group-item">
+                    <strong>{{ ques.question }}</strong>
+                    <span class="pull-right">
+                        <a href="{% url 'vote' ques.id %}" class="btn btn-info btn-xs">Vote</a> &nbsp;
+                        <a href="{% url 'results' ques.id %}" class="btn btn-default btn-xs">View Results</a> &nbsp;
+                    </span>
+                </li>
+                {% empty %}
+                <h4><center>No Polls.. Add <a href="{% url 'create' %}">one</a></center></h4>
+                {% endfor %}
+            </ul>
+
+        </div>
+    </div>
+</div>
+{% endblock %}
