@@ -33,4 +33,12 @@ def vote(request, pk):
 
 def results(request, pk):
     ques = Poll.objects.get(id=pk)
-    return render(request, 'results.html', {'ques':ques})
+    data = []
+    labels = []
+    labels.append(ques.option_one)
+    labels.append(ques.option_two)
+    labels.append(ques.option_three)
+    data.append(ques.option_one_count)
+    data.append(ques.option_two_count)
+    data.append(ques.option_three_count)
+    return render(request, 'results.html', {'ques':ques, "label": labels, "data": data})
